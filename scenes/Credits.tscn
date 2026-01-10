@@ -1,0 +1,158 @@
+[gd_scene load_steps=10 format=3 uid="uid://d4mg2edfi2jfu"]
+
+[ext_resource type="Texture2D" uid="uid://v0wet22pi7m8" path="res://assets/background/OverwatchMap.jpg" id="1_hi4w3"]
+[ext_resource type="AudioStream" uid="uid://blkydvyynya0g" path="res://assets/Sounds/CreditsMusic.mp3" id="2_spvsy"]
+[ext_resource type="Script" uid="uid://bcj4ai1joa2mh" path="res://scripts/CreditLeave.gd" id="3_gw1d4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_spvsy"]
+texture = ExtResource("1_hi4w3")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y8nor"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="Animation" id="Animation_d3eho"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5d5v2"]
+resource_name = "backtonormal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ytedg"]
+resource_name = "fade_to_black"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5d5v2"]
+_data = {
+&"RESET": SubResource("Animation_d3eho"),
+&"backtonormal": SubResource("Animation_5d5v2"),
+&"fade_to_black": SubResource("Animation_ytedg")
+}
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Panel" parent="."]
+modulate = Color(0.42365062, 0.42365065, 0.42365062, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_spvsy")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -243.0
+offset_bottom = -73.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ScrollContainer"]
+layout_mode = 2
+text = "Backgrounds:
+Overwatch (Blizzard)
+
+"
+
+[node name="Label2" type="Label" parent="ScrollContainer/Label"]
+layout_mode = 0
+offset_top = 51.0
+offset_right = 885.0
+offset_bottom = 204.0
+text = "Music:
+Videogame Title Screen Music by guillermochicasonido 
+-- https://freesound.org/s/691654/ -- License: Attribution 4.0
+Fnaf Pizzaria Simulator: \"Legal Woes\" - Scott Games
+keyboard fast typing without accents delay.wav by Sorinious_Genious
+ -- https://freesound.org/s/559898/ -- License: Creative Commons 0
+breaking window 001 141113_0452.wav by klankbeeld 
+-- https://freesound.org/s/256993/ -- License: Attribution 4.0"
+
+[node name="CreditMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_spvsy")
+autoplay = true
+
+[node name="CreditsButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -145.0
+offset_top = -63.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_y8nor")
+text = "Meneu
+"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("3_gw1d4")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_5d5v2")
+}
+speed_scale = 1.5
+
+[connection signal="pressed" from="CreditsButton" to="CanvasLayer" method="_on_credits_button_pressed"]
+[connection signal="ready" from="CanvasLayer" to="CanvasLayer" method="_on_ready"]

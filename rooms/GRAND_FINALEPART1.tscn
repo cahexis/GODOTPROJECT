@@ -1,0 +1,153 @@
+[gd_scene load_steps=16 format=3 uid="uid://4e8mokwwpikj"]
+
+[ext_resource type="Script" uid="uid://isiubulshspk" path="res://rooms/FINALEMAINSCRIPT.gd" id="1_ptnxx"]
+[ext_resource type="Texture2D" uid="uid://bhsc4v182nb26" path="res://assets/FINALEASSETS/DrivingStreet.png" id="2_2p35s"]
+[ext_resource type="Script" uid="uid://bjr555xydix6e" path="res://rooms/FINALCANVAS.gd" id="2_l02jd"]
+[ext_resource type="Texture2D" uid="uid://d3md4f4oynv22" path="res://assets/FINALEASSETS/ShoyaDriving.png" id="2_nmgmn"]
+[ext_resource type="Texture2D" uid="uid://cmwonemcvk3d7" path="res://assets/FINALEASSETS/SbeveAvatar.png" id="3_2qgi5"]
+[ext_resource type="Texture2D" uid="uid://cr84ynjx5ifv2" path="res://assets/othersprites/ShoyaArm.png" id="4_aow00"]
+[ext_resource type="AudioStream" uid="uid://bjqfxgya0c458" path="res://assets/Sounds/ShowPhoneSound.mp3" id="5_2p35s"]
+[ext_resource type="VideoStream" uid="uid://dg7b5as7sq7om" path="res://assets/FINALEASSETS/BuckyEdit.ogv" id="8_2ywkw"]
+[ext_resource type="AudioStream" uid="uid://cr1bkieob2i6a" path="res://assets/FINALEASSETS/SbevesVoiceTrust.mp3" id="9_b5cv7"]
+[ext_resource type="AudioStream" uid="uid://djnbhftkm51wu" path="res://assets/FINALEASSETS/DrivingInCar.wav" id="10_2ywkw"]
+[ext_resource type="AudioStream" uid="uid://ug7nmk8e1f6s" path="res://assets/Sounds/DeltaruneSplatSound.mp3" id="11_b5cv7"]
+
+[sub_resource type="Animation" id="Animation_d3eho"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5d5v2"]
+resource_name = "backtonormal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ytedg"]
+resource_name = "fade_to_black"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5d5v2"]
+_data = {
+&"RESET": SubResource("Animation_d3eho"),
+&"backtonormal": SubResource("Animation_5d5v2"),
+&"fade_to_black": SubResource("Animation_ytedg")
+}
+
+[node name="GrandFinalepart1" type="Node2D"]
+script = ExtResource("1_ptnxx")
+
+[node name="BackgroundShit" type="Sprite2D" parent="."]
+position = Vector2(570.50006, 269)
+scale = Vector2(3.6949995, 2.7225)
+texture = ExtResource("2_2p35s")
+
+[node name="SbeveAvatar" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(566, 127.000015)
+scale = Vector2(2.323276, 1.714453)
+texture = ExtResource("3_2qgi5")
+
+[node name="SbeveAvatar2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(574, 145.00002)
+scale = Vector2(3.3128374, 3.2850223)
+texture = ExtResource("3_2qgi5")
+
+[node name="SbeveAvatar3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(581, 170)
+scale = Vector2(4.711022, 4.4462557)
+texture = ExtResource("3_2qgi5")
+
+[node name="ShoyaInCar" type="Sprite2D" parent="."]
+position = Vector2(574.00006, 281)
+scale = Vector2(3.725, 2.785)
+texture = ExtResource("2_nmgmn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("2_l02jd")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_5d5v2")
+}
+speed_scale = 1.5
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(571, 279)
+zoom = Vector2(1.55, 1.15)
+limit_enabled = false
+
+[node name="PhoneSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(668, 672)
+scale = Vector2(1.62, 1.88)
+texture = ExtResource("4_aow00")
+
+[node name="ShowPhone" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_2p35s")
+
+[node name="BuckyEdit" type="VideoStreamPlayer" parent="."]
+visible = false
+offset_left = 610.0
+offset_top = 297.0
+offset_right = 662.0
+offset_bottom = 374.0
+stream = ExtResource("8_2ywkw")
+volume_db = -34.999992
+expand = true
+loop = true
+
+[node name="SbevesVoice" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_b5cv7")
+volume_db = 15.0
+
+[node name="ShoyaDriving" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_2ywkw")
+volume_db = 12.0
+
+[node name="Splat" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_b5cv7")
+volume_db = -10.0
+
+[connection signal="StartingTime" from="." to="CanvasLayer" method="_on_grand_finalepart_1_starting_time"]
+[connection signal="ready" from="CanvasLayer" to="CanvasLayer" method="_on_ready"]

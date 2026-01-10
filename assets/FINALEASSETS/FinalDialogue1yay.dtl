@@ -1,0 +1,24 @@
+join EmiTalk1 center
+set {EmiSprite} = 0.0
+[wait time="3.0"]
+EmiTalk1: I've been expecting you Shioya Jebediah Dingleberry.
+EmiTalk1: Or should I say..
+set {EmiSprite} = 1.0
+[wait time="2.0"]
+join EmiTalk2 center
+EmiTalk2: SHOYA
+EmiTalk2: YOU MAY BE WONDERING
+set {EmiSprite} = 3.0
+EmiTalk2: "BUT EMI, [pause=0.5] WHY DID YOU TAKE OVER BLIZZARD??"
+EmiTalk2: dawg do you know how much money I have in my account
+set {EmiSprite} = 4.0
+EmiTalk2: [lspeed=0.2][font_size=60]FOUR!!!
+EmiTalk2: [lspeed=0.2][font_size=60]FOUR DOLLARS!!!
+EmiTalk2: [lspeed=0.1][font_size=50]IM BROKE AS HELL!!
+set {EmiSprite} = 1.0
+EmiTalk2: SO I DECIDED TO TAKE OVER SO I COULD PROFIT FROM THE KIRIKO SKINS
+EmiTalk2: AND GUESS WHAT
+EmiTalk2: IM GOING TO MAKE MORE KIRIKO SKINS
+EmiTalk2: SHE'LL GET 10 MORE MYTHIC SKINS
+EmiTalk2: AND ECHO WILL HAVE ALL OF HER SKINS REMOVED
+EmiTalk2: [font_size=50]JUST TO SPITE YOU

@@ -1,0 +1,289 @@
+[gd_scene load_steps=22 format=3 uid="uid://dfgy7wua4pi5w"]
+
+[ext_resource type="Script" uid="uid://dbtfwegr04cr7" path="res://scripts/Main_Menu_Script.gd" id="1_h8c6n"]
+[ext_resource type="Script" uid="uid://dchaiefxs51cg" path="res://scripts/ExitButton.gd" id="1_jfien"]
+[ext_resource type="Texture2D" uid="uid://v0wet22pi7m8" path="res://assets/background/OverwatchMap.jpg" id="1_yb5uv"]
+[ext_resource type="Texture2D" uid="uid://3m54q2r3ywu7" path="res://assets/othersprites/HATESpritesheet.png" id="3_h8c6n"]
+[ext_resource type="AudioStream" uid="uid://bae1phhkxemru" path="res://assets/Sounds/TitleMusic.wav" id="6_d3eho"]
+[ext_resource type="Script" uid="uid://dwe8ds463hfdn" path="res://scripts/TransitionPart.gd" id="6_ytedg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d3eho"]
+texture = ExtResource("1_yb5uv")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5d5v2"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y2rfe"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="GDScript" id="GDScript_7e6vm"]
+script/source = "extends Button
+
+var normtext = \"Options\"
+var hovertxt = \"I dont wanna\"
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	self.text = normtext # Replace with function body.
+
+func _on_mouse_entered() -> void:
+	self.text = hovertxt
+	
+func _on_mouse_exited() -> void:
+	self.text = normtext
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0qjw"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7260r"]
+atlas = ExtResource("3_h8c6n")
+region = Rect2(0, 0, 239, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3124"]
+atlas = ExtResource("3_h8c6n")
+region = Rect2(239, 0, 239, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecnfn"]
+atlas = ExtResource("3_h8c6n")
+region = Rect2(478, 0, 239, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kiw3d"]
+atlas = ExtResource("3_h8c6n")
+region = Rect2(717, 0, 239, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wqjl"]
+atlas = ExtResource("3_h8c6n")
+region = Rect2(956, 0, 239, 112)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_73mli"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7260r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3124")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ecnfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kiw3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wqjl")
+}],
+"loop": true,
+"name": &"AnimText",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_d3eho"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5d5v2"]
+resource_name = "backtonormal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ytedg"]
+resource_name = "fade_to_black"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5d5v2"]
+_data = {
+&"RESET": SubResource("Animation_d3eho"),
+&"backtonormal": SubResource("Animation_5d5v2"),
+&"fade_to_black": SubResource("Animation_ytedg")
+}
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h8c6n")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_d3eho")
+
+[node name="CreditsButton" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -63.0
+offset_right = 145.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_5d5v2")
+text = "Credits"
+
+[node name="ButtonHolder" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -222.0
+offset_top = -21.0
+offset_right = 223.0
+offset_bottom = 248.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="ButtonHolder"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_y2rfe")
+text = "Start Gay"
+
+[node name="Options" type="Button" parent="ButtonHolder"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_y2rfe")
+text = "Options"
+script = SubResource("GDScript_7e6vm")
+
+[node name="Exit" type="Button" parent="ButtonHolder"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_y2rfe")
+text = "leave"
+script = ExtResource("1_jfien")
+
+[node name="Title1" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.5
+offset_right = 80.5
+offset_bottom = 73.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_v0qjw")
+text = "Shoya"
+
+[node name="Title2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -134.0
+offset_top = 207.0
+offset_right = 135.0
+offset_bottom = 280.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_v0qjw")
+text = "THIS GAME"
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(577, 139)
+sprite_frames = SubResource("SpriteFrames_73mli")
+animation = &"AnimText"
+autoplay = "AnimText"
+
+[node name="MenuMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_d3eho")
+autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("6_ytedg")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_5d5v2")
+}
+speed_scale = 1.5
+
+[connection signal="pressed" from="CreditsButton" to="CanvasLayer" method="_on_credits_button_pressed"]
+[connection signal="pressed" from="ButtonHolder/Start" to="CanvasLayer" method="_on_start_pressed"]
+[connection signal="mouse_entered" from="ButtonHolder/Options" to="ButtonHolder/Options" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ButtonHolder/Options" to="ButtonHolder/Options" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="ButtonHolder/Exit" to="ButtonHolder/Exit" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ButtonHolder/Exit" to="ButtonHolder/Exit" method="_on_mouse_exited"]
+[connection signal="pressed" from="ButtonHolder/Exit" to="ButtonHolder/Exit" method="_on_pressed"]
+[connection signal="ready" from="CanvasLayer" to="CanvasLayer" method="_on_ready"]
