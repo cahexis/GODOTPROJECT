@@ -1,4 +1,4 @@
-ShoyaTalk: Would you like to break into this random ass car?
+ShoyaTalk: Would you like to break into this random car?
 - Yes
 	set {Option} = 1.0
 	# Yes Chosen
