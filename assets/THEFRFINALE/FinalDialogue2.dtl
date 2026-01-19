@@ -15,11 +15,11 @@ EmiTalk2: [aa=0.5]uh huh
 EmiTalk2: [aa=0.5]yeah yeah
 EmiTalk2: [aa=0.5]uh huh
 set {EmiSprite} = 6.0
-EmiTalk2: [aa=2]the fuck you mean we cant afford the battle
-EmiTalk2: [aa=1]the fuck you mean that we ran out of money cause of doing only kiriko skins
+EmiTalk2: [aa=2]what do you mean we cant afford the battle
+EmiTalk2: [aa=1]you mean that we ran out of money cause of doing only kiriko skins
 [wait time="1.0"]
 [wait time="2.0"]
-EmiTalk2: Well shit
+EmiTalk2: Well...
 set {EmiSprite} = 2.0
 EmiTalk2: uhm
 EmiTalk2: i guess you can just
