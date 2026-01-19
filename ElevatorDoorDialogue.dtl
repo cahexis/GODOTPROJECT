@@ -1,6 +1,6 @@
-ShoyaTalk: The elevator door is closed dumbass
+ShoyaTalk: The elevator door is closed idit
 if {Badaboom} == 1.0:
-	Would you like to break that shit open lmao
+	Would you like to break that open 
 	- yes
 		set {OpenDoor} = 1.0
 	- no
